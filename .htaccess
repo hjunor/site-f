@@ -1,0 +1,54 @@
+# BEGIN .htaccess
+
+# Define o conjunto de caracteres padrão para o conteúdo
+AddDefaultCharset UTF-8
+
+# Força a utilização de HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Configurações de Cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/html "access plus 1 week"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Configurações de Compressão
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Prevenir Listagem de Diretórios
+Options -Indexes
+
+# Proteger Arquivos Sensíveis
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh|tpl)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Redirecionamento de Erro 404 Personalizado
+ErrorDocument 404 /404.html
+
+# Definir Fuso Horário
+SetEnv TZ America/Sao_Paulo
+
+# Habilitar URLs Amigáveis (caso use CMS como WordPress, Joomla, etc.)
+# RewriteBase /
+# RewriteRule ^index\.php$ - [L]
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule . /index.php [L]
+
+# Fim do .htaccess
