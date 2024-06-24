@@ -80,6 +80,9 @@ body {
   outline: 0 !important;
 }
 
+.br{
+  border: 1px solid red;
+}
 hr {
   box-sizing: content-box;
   height: 0;
@@ -2541,14 +2544,14 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #d93d00;
-  border-color: #cc3a00;
+  background-color: #00599b;
+  border-color: #00599b;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: #d93d00;
+  background-color: #00599b;
   border-color: #cc3a00;
   box-shadow: 0 0 0 0.2rem rgba(255, 99, 38, 0.5);
 }
